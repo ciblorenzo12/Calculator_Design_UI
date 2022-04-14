@@ -6,9 +6,15 @@ class MainWindows:public wxFrame
 {
 public :
 	MainWindows();
-	int windows_hight = 700;
-	int windows_with = 400;
+	int button_sqare_size = 100;
+	int windows_hight = 800;
+	int windows_with = 415;
+
+	//Display
 	wxListBox* numDisp = nullptr;
+
+
+	//butons
 	wxButton* zero = nullptr;
 	wxButton* one= nullptr;
 	wxButton* two = nullptr;
@@ -23,9 +29,16 @@ public :
 	wxButton* div = nullptr;
 	wxButton* subtract = nullptr;
 	wxButton* addition = nullptr;
-	
+	wxButton* mult = nullptr;
+	wxButton* equal = nullptr;
 
 	//sizer
 wxSizer* Sizer = nullptr;
+
+
+
+
+
+
 };
 
