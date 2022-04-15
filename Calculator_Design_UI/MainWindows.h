@@ -7,7 +7,7 @@ class MainWindows:public wxFrame
 public :
 	MainWindows();
 	int button_sqare_size = 100;
-	int windows_hight = 800;
+	int windows_hight = 845;
 	int windows_with = 415;
 
 	//Display
@@ -31,11 +31,26 @@ public :
 	wxButton* addition = nullptr;
 	wxButton* mult = nullptr;
 	wxButton* equal = nullptr;
+	wxButton* Negate = nullptr;
 
+	wxButton* Dec = nullptr;
+	wxButton* Bin = nullptr;
+	wxButton* Hex = nullptr;
+	wxButton* A = nullptr;
+	wxButton* B = nullptr;
+	wxButton* C = nullptr;
+	wxButton* D = nullptr;
+	wxButton* E = nullptr;
+	wxButton* F = nullptr;
+
+	wxButton* Point = nullptr;
+	wxButton* clear = nullptr;
+
+	
 	//sizer
 wxSizer* Sizer = nullptr;
 
-
+int isHex = 1;
 
 
 
