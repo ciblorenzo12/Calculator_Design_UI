@@ -1,6 +1,6 @@
 #include "MainWindows.h"
 
-#define IsOnHex 1
+#define IsOnHex 0
 #define IsOnBin 0
 #define IsOnDec 0
 

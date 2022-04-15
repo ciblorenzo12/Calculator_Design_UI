@@ -51,7 +51,8 @@ public :
 	//sizer
 wxSizer* Sizer = nullptr;
 
-int isHex = 1;
+//Evente Table
+wxDECLARE_EVENT_TABLE();
 
 
 
