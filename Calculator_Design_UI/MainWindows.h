@@ -12,8 +12,9 @@ public :
 
 	//Display
 	wxListBox* numDisp = nullptr;
-
-
+	 
+	//fonts
+	wxFont* font = nullptr;
 	//butons
 	wxButton* zero = nullptr;
 	wxButton* one= nullptr;

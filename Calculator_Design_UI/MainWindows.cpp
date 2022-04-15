@@ -35,7 +35,7 @@ MainWindows::MainWindows(): wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(50,
 	 Hex = new wxButton(this, wxID_ANY, " HEX ", wxPoint(200, 600), wxSize(button_sqare_size, button_sqare_size));
 	 Point = new wxButton(this, wxID_ANY, " . ", wxPoint(300, 600), wxSize(button_sqare_size, button_sqare_size));
 	clear = new wxButton(this, wxID_ANY, " CE ", wxPoint(0, 700), wxSize(windows_with, 50));
-	Negate= new wxButton(this, wxID_ANY, " (Negative) ", wxPoint(0, 750), wxSize(windows_with, 50));
+	Negate= new wxButton(this, wxID_ANY, " (-) ", wxPoint(0, 750), wxSize(windows_with, 50));
 	
 
 #if IsOnHex 
@@ -106,9 +106,8 @@ MainWindows::MainWindows(): wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(50,
 	nine->SetBackgroundColour("Blue");
 	Dec->SetBackgroundColour("Blue");
 
-	Negate->SetBackgroundColour("Red");
-	Negate->SetForegroundColour("White");
-
+	Negate->SetBackgroundColour("grey");
+	clear -> SetBackgroundColour("grey");
 
 	Bin->SetForegroundColour("White");
 	zero->SetForegroundColour("White");
@@ -134,5 +133,37 @@ MainWindows::MainWindows(): wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(50,
 	this->SetMaxSize(wxSize(windows_with, windows_hight));
 	this->SetMinSize(wxSize(windows_with, windows_hight));
 	SetSizer(Sizer);
+
+
+	//fonts
+	wxFont font(24, wxFONTFAMILY_TELETYPE, wxFONTSTYLE_MAX, wxFONTWEIGHT_EXTRABOLD,false);
+	wxFont fontOp(26, wxFONTFAMILY_SCRIPT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_EXTRAHEAVY, false);
+	wxFont fontTypeOfNumbers(20, wxFONTFAMILY_DECORATIVE, wxFONTSTYLE_SLANT, wxFONTWEIGHT_BOLD, false);
+	//numbs
+	zero->SetFont(font);
+	one->SetFont(font);
+	two->SetFont(font);
+	three->SetFont(font);
+	four->SetFont(font);
+	five->SetFont(font);
+    six->SetFont(font);
+	seven->SetFont(font);
+	eight->SetFont(font);
+	nine->SetFont(font);
+	clear->SetFont(font);
+	
+	//operations
+	div->SetFont(fontOp);
+	mult->SetFont(fontOp);
+	addition->SetFont(fontOp);
+	subtract->SetFont(fontOp);
+	equal->SetFont(fontOp);
+	Point->SetFont(fontOp);
+	Negate->SetFont(fontOp);
+	//Type of numbs
+	mod->SetFont(fontTypeOfNumbers);
+	Dec->SetFont(fontTypeOfNumbers);
+	Bin->SetFont(fontTypeOfNumbers);
+	Hex->SetFont(fontTypeOfNumbers);
 }
 
