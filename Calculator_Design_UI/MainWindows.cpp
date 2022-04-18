@@ -1,9 +1,8 @@
 #include "MainWindows.h"
 #include <string>
 
-#define IsOnHex 0
-#define IsOnBin 0
-#define IsOnDec 0
+
+
 
 wxBEGIN_EVENT_TABLE(MainWindows, wxFrame)
 EVT_BUTTON(1000, Clickon_Zero)
@@ -74,9 +73,10 @@ MainWindows::MainWindows(): wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(50,
 	clear = new wxButton(this, 6, " CE ", wxPoint(0, 700), wxSize(windows_with, 50));
 	Negate = new wxButton(this,9, " Negate(-)", wxPoint(0, 750), wxSize(windows_with, 50));
 
-#if IsOnHex 
-	int windows_hight = 890;
-	int windows_with = 415;
+
+#if IsOnHex  
+	 windows_hight = 890;
+	 windows_with = 415;
 	A = new wxButton(this, 10, " A ", wxPoint(0, 800), wxSize(button_sqare_size - 50, button_sqare_size - 50));
 	B =  new wxButton(this, 11, " B ", wxPoint(50, 800), wxSize(button_sqare_size - 50, button_sqare_size - 50));
 	C = new wxButton(this, 12, " C ", wxPoint(100, 800), wxSize(button_sqare_size - 50, button_sqare_size - 50));
@@ -98,7 +98,7 @@ MainWindows::MainWindows(): wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(50,
 	E->SetBackgroundColour("yellow");
 	
 	F ->SetBackgroundColour("yellow");
-#else
+
 
 #endif // 0
 
@@ -180,7 +180,7 @@ MainWindows::MainWindows(): wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(50,
 	wxFont font(24, wxFONTFAMILY_TELETYPE, wxFONTSTYLE_MAX, wxFONTWEIGHT_EXTRABOLD,false);
 	wxFont fontOp(26, wxFONTFAMILY_SCRIPT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_EXTRAHEAVY, false);
 	wxFont fontTypeOfNumbers(20, wxFONTFAMILY_DECORATIVE, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false);
-	numDisp->SetFont(font);
+	numDisp->SetFont(fontTypeOfNumbers);
 	numDisp->Clear();
 	numDisp->AppendText("\n\n\n");
 
@@ -571,7 +571,8 @@ void MainWindows::Clickon_bin(wxCommandEvent& event) {
 }
 void MainWindows::Clickon_hex(wxCommandEvent& event) {
 	//not ready yet working on logic 
-     
+
+	
 }
 void MainWindows::Clickon_dec(wxCommandEvent& event) {
 
