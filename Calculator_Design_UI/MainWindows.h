@@ -1,6 +1,9 @@
 #pragma once
 #include "wx/wx.h"
 
+#define IsOnBin 0
+#define IsOnDec 0
+#define IsOnHex 0
 
 class MainWindows:public wxFrame
 {
@@ -9,11 +12,16 @@ public :
 	int button_sqare_size = 100;
 	int windows_hight = 845;
 	int windows_with = 415;
-
+	bool first_click = true;
+	//calc 
+	bool is_negative = false;
+	//int Numb1;
+	//int Numb2;
 	//Display
-	wxListBox* numDisp = nullptr;
-	 
+	wxTextCtrl* numDisp = nullptr;
+	
 	//fonts
+
 	wxFont* font = nullptr;
 	//butons
 	wxButton* zero = nullptr;
@@ -46,15 +54,52 @@ public :
 
 	wxButton* Point = nullptr;
 	wxButton* clear = nullptr;
-
+	wxButton* backspace = nullptr;
 	
+	
+
 	//sizer
 wxSizer* Sizer = nullptr;
 
-int isHex = 1;
+//Events Table
+wxDECLARE_EVENT_TABLE();
+//click function events
+void Clickon_Zero(wxCommandEvent& event);
+void Clickon_One(wxCommandEvent& event);
+void Clickon_Two(wxCommandEvent& event);
+void Clickon_Three(wxCommandEvent& event);
+void Clickon_Four(wxCommandEvent& event);
+void Clickon_Five(wxCommandEvent& event);
+void Clickon_Six(wxCommandEvent& event);
+void Clickon_Seven(wxCommandEvent& event);
+void Clickon_Eight(wxCommandEvent& event);
+void Clickon_Nine(wxCommandEvent& event);
+//hex
+void Clickon_A(wxCommandEvent& event);
+void Clickon_B(wxCommandEvent& event);
+void Clickon_C(wxCommandEvent& event);
+void Clickon_D(wxCommandEvent& event);
+void Clickon_E(wxCommandEvent& event);
+void Clickon_F(wxCommandEvent& event);
+//operations
+void Clickon_subtract(wxCommandEvent& event);
+void Clickon_Add(wxCommandEvent& event);
+void Clickon_div(wxCommandEvent& event);
+void Clickon_Mult(wxCommandEvent& event);
+//special  op
+void Clickon_Mod(wxCommandEvent& event);
+void Clickon_Clear(wxCommandEvent& event);
+void Clickon_Equal(wxCommandEvent& event);
+void Clickon_Point(wxCommandEvent& event);
+void Clickon_Negate(wxCommandEvent& event);
+//modes
+void Clickon_bin(wxCommandEvent& event);
+void Clickon_hex(wxCommandEvent& event);
+void Clickon_dec(wxCommandEvent& event);
+//bool for checking if is 0
 
-
-
+private :
+	bool Iszero = true;
 
 };
 
