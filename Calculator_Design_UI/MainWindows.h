@@ -2,7 +2,6 @@
 #include "wx/wx.h"
 
 
-
 class MainWindows:public wxFrame
 {
 public :
@@ -59,7 +58,8 @@ public :
 	//sizer
 wxSizer* Sizer = nullptr;
 
-
+//Events Table
+//wxDECLARE_EVENT_TABLE();
 //click function events
 void Clickon_Zero(wxCommandEvent& event);
 void Clickon_One(wxCommandEvent& event);
@@ -94,6 +94,7 @@ void Clickon_bin(wxCommandEvent& event);
 void Clickon_hex(wxCommandEvent& event);
 void Clickon_dec(wxCommandEvent& event);
 //bool for checking if is 0
+
 
 private :
 	bool Iszero = true;

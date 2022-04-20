@@ -103,7 +103,7 @@ MainWindows::MainWindows(): wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(50,
 	C = ButtonFactory().CreateAddButton(this, 12, " C ", button_sqare_size - 50, 100, 800, "Grey ", "Black", fontTypeOfNumbers); C->Bind(wxEVT_BUTTON, &MainWindows::Clickon_C, this);
 	D = ButtonFactory().CreateAddButton(this, 13, " D ", button_sqare_size - 50, 150, 800, "Grey ", "Black", fontTypeOfNumbers); D->Bind(wxEVT_BUTTON, &MainWindows::Clickon_D, this);
 	E = ButtonFactory().CreateAddButton(this, 14, " E ", button_sqare_size - 50, 200, 800, "Grey ", "Black", fontTypeOfNumbers); E->Bind(wxEVT_BUTTON, &MainWindows::Clickon_E, this);
-	F = ButtonFactory().CreateAddButton(this, 15, " F ", button_sqare_size - 50, 250, 800, "Grey ", "Black", fontTypeOfNumbers); F->Bind(wxEVT_BUTTON, &MainWindows::Clickon_F, this);
+	F = ButtonFactory().CreateAddButton(this, 15, " A ", button_sqare_size - 50, 250, 800, "Grey ", "Black", fontTypeOfNumbers); F->Bind(wxEVT_BUTTON, &MainWindows::Clickon_F, this);
 
 
 	
