@@ -59,8 +59,7 @@ public :
 	//sizer
 wxSizer* Sizer = nullptr;
 
-//Events Table
-//wxDECLARE_EVENT_TABLE();
+
 //click function events
 void Clickon_Zero(wxCommandEvent& event);
 void Clickon_One(wxCommandEvent& event);
@@ -83,43 +82,6 @@ void Clickon_F(wxCommandEvent& event);
 void Clickon_subtract(wxCommandEvent& event);
 void Clickon_Add(wxCommandEvent& event);
 void Clickon_Div(wxCommandEvent& event);
-void Clickon_Mult(wxCommandEvent& event);
-//special  op
-void Clickon_Mod(wxCommandEvent& event);
-void Clickon_Clear(wxCommandEvent& event);
-void Clickon_Equal(wxCommandEvent& event);
-void Clickon_Point(wxCommandEvent& event);
-void Clickon_Negate(wxCommandEvent& event);
-//modes
-void Clickon_bin(wxCommandEvent& event);
-void Clickon_hex(wxCommandEvent& event);
-void Clickon_dec(wxCommandEvent& event);
-//bool for checking if is 0
-
-//Events Table
-wxDECLARE_EVENT_TABLE();
-//click function events
-void Clickon_Zero(wxCommandEvent& event);
-void Clickon_One(wxCommandEvent& event);
-void Clickon_Two(wxCommandEvent& event);
-void Clickon_Three(wxCommandEvent& event);
-void Clickon_Four(wxCommandEvent& event);
-void Clickon_Five(wxCommandEvent& event);
-void Clickon_Six(wxCommandEvent& event);
-void Clickon_Seven(wxCommandEvent& event);
-void Clickon_Eight(wxCommandEvent& event);
-void Clickon_Nine(wxCommandEvent& event);
-//hex
-void Clickon_A(wxCommandEvent& event);
-void Clickon_B(wxCommandEvent& event);
-void Clickon_C(wxCommandEvent& event);
-void Clickon_D(wxCommandEvent& event);
-void Clickon_E(wxCommandEvent& event);
-void Clickon_F(wxCommandEvent& event);
-//operations
-void Clickon_subtract(wxCommandEvent& event);
-void Clickon_Add(wxCommandEvent& event);
-void Clickon_div(wxCommandEvent& event);
 void Clickon_Mult(wxCommandEvent& event);
 //special  op
 void Clickon_Mod(wxCommandEvent& event);
