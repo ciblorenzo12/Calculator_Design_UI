@@ -1,16 +1,13 @@
 #pragma once
 #include "wx/wx.h"
 
-#define IsOnBin 0
-#define IsOnDec 0
-#define IsOnHex 0
 
 class MainWindows:public wxFrame
 {
 public :
 	MainWindows();
 	int button_sqare_size = 100;
-	int windows_hight = 845;
+	int windows_hight = 890;
 	int windows_with = 415;
 	bool first_click = true;
 	//calc 
@@ -62,7 +59,7 @@ public :
 wxSizer* Sizer = nullptr;
 
 //Events Table
-wxDECLARE_EVENT_TABLE();
+//wxDECLARE_EVENT_TABLE();
 //click function events
 void Clickon_Zero(wxCommandEvent& event);
 void Clickon_One(wxCommandEvent& event);
@@ -84,7 +81,7 @@ void Clickon_F(wxCommandEvent& event);
 //operations
 void Clickon_subtract(wxCommandEvent& event);
 void Clickon_Add(wxCommandEvent& event);
-void Clickon_div(wxCommandEvent& event);
+void Clickon_Div(wxCommandEvent& event);
 void Clickon_Mult(wxCommandEvent& event);
 //special  op
 void Clickon_Mod(wxCommandEvent& event);
@@ -97,6 +94,7 @@ void Clickon_bin(wxCommandEvent& event);
 void Clickon_hex(wxCommandEvent& event);
 void Clickon_dec(wxCommandEvent& event);
 //bool for checking if is 0
+
 
 private :
 	bool Iszero = true;

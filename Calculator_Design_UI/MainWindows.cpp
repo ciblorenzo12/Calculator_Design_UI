@@ -1,163 +1,115 @@
 #include "MainWindows.h"
 #include <string>
+#include "ButtonFactory.h"
 
 
 
-
-wxBEGIN_EVENT_TABLE(MainWindows, wxFrame)
-EVT_BUTTON(1000, Clickon_Zero)
-EVT_BUTTON(1001, Clickon_One)
-EVT_BUTTON(1002, Clickon_Two)
-EVT_BUTTON(1003, Clickon_Three)
-EVT_BUTTON(1004, Clickon_Four)
-EVT_BUTTON(1005, Clickon_Five)
-EVT_BUTTON(1006, Clickon_Six)
-EVT_BUTTON(1007, Clickon_Seven)
-EVT_BUTTON(1008, Clickon_Eight)
-EVT_BUTTON(1009, Clickon_Nine)
-
-//Hex
-EVT_BUTTON(10, Clickon_A)
-EVT_BUTTON(11, Clickon_B)
-EVT_BUTTON(12, Clickon_C)
-EVT_BUTTON(13, Clickon_D)
-EVT_BUTTON(14, Clickon_E)
-EVT_BUTTON(15, Clickon_F)
-
-//Operations
-EVT_BUTTON(1, Clickon_div)
-EVT_BUTTON(2, Clickon_subtract)
-EVT_BUTTON(3, Clickon_Add)
-EVT_BUTTON(4, Clickon_Mult)
-
-//Special OP
-EVT_BUTTON(111, Clickon_Mod)
-EVT_BUTTON(6, Clickon_Clear)
-EVT_BUTTON(7, Clickon_Equal)
-EVT_BUTTON(8, Clickon_Point)
-EVT_BUTTON(9, Clickon_Negate)
-
-//modes 
-EVT_BUTTON(100, Clickon_bin)
-EVT_BUTTON(101, Clickon_hex)
-EVT_BUTTON(102, Clickon_dec)
-
-
-wxEND_EVENT_TABLE()
+//wxBEGIN_EVENT_TABLE(MainWindows, wxFrame)
+//
+//
+//
+//
+//
+//wxEND_EVENT_TABLE()
 MainWindows::MainWindows(): wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(50, 50), wxSize(windows_with, windows_hight)) {
 	//Display
+	
 	numDisp = new wxTextCtrl(this, wxID_ANY,"\n\n\n 0", wxPoint(50, 1), wxSize(windows_with, 200), wxTE_MULTILINE|wxTE_RICH2|wxTE_READONLY|wxTE_CENTER| wxTE_NO_VSCROLL);
-
+	wxFont font(24, wxFONTFAMILY_TELETYPE, wxFONTSTYLE_MAX, wxFONTWEIGHT_EXTRABOLD, false);
+	wxFont fontOp(26, wxFONTFAMILY_SCRIPT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_EXTRAHEAVY, false);
+	wxFont fontTypeOfNumbers(20, wxFONTFAMILY_DECORATIVE, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false);
 
 	///buttons
-	div = new wxButton(this, 1, " / ", wxPoint(0, 200), wxSize(button_sqare_size,button_sqare_size));
-	one = new wxButton(this, 1001, " 1 ", wxPoint(100, 200), wxSize(button_sqare_size, button_sqare_size));
-	two = new wxButton(this, 1002, " 2 ", wxPoint(200, 200), wxSize(button_sqare_size, button_sqare_size));
-	three = new wxButton(this, 1003, " 3 ", wxPoint(300, 200), wxSize(button_sqare_size, button_sqare_size));
-	subtract = new wxButton(this, 2, " - ", wxPoint(0, 300), wxSize(button_sqare_size, button_sqare_size));
-	four = new wxButton(this, 1004, " 4 ", wxPoint(100, 300), wxSize(button_sqare_size, button_sqare_size));
-	five = new wxButton(this, 1005, " 5 ", wxPoint(200, 300), wxSize(button_sqare_size, button_sqare_size));
-	six = new wxButton(this, 1006, " 6 ", wxPoint(300, 300), wxSize(button_sqare_size, button_sqare_size));
-	addition = new wxButton(this, 3, " + ", wxPoint(0, 400), wxSize(button_sqare_size, button_sqare_size));
-	seven = new wxButton(this, 1007, " 7 ", wxPoint(100, 400), wxSize(button_sqare_size, button_sqare_size));
-	eight = new wxButton(this, 1008, " 8 ", wxPoint(200, 400), wxSize(button_sqare_size, button_sqare_size));
-	nine = new wxButton(this, 1009, " 9 ", wxPoint(300, 400), wxSize(button_sqare_size, button_sqare_size));
-	mult = new wxButton(this, 4, " * ", wxPoint(0, 500), wxSize(button_sqare_size, button_sqare_size));
-	mod = new wxButton(this, 111, " Mod ", wxPoint(100, 500), wxSize(button_sqare_size, button_sqare_size));
-	zero = new wxButton(this, 1000, " 0 ", wxPoint(200, 500), wxSize(button_sqare_size, button_sqare_size));
-	equal = new wxButton(this, 7, " = ", wxPoint(300, 500), wxSize(button_sqare_size, button_sqare_size));
-     Dec = new wxButton(this, 102, " DEC ", wxPoint(0, 600), wxSize(button_sqare_size, button_sqare_size));
-	Bin = new wxButton(this, 100, " BIN ", wxPoint(100, 600), wxSize(button_sqare_size, button_sqare_size));
-	 Hex = new wxButton(this, 101, " HEX ", wxPoint(200, 600), wxSize(button_sqare_size, button_sqare_size));
-	 Point = new wxButton(this, 8, " . ", wxPoint(300, 600), wxSize(button_sqare_size, button_sqare_size));
-	clear = new wxButton(this, 6, " CE ", wxPoint(0, 700), wxSize(windows_with, 50));
-	Negate = new wxButton(this,9, " Negate(-)", wxPoint(0, 750), wxSize(windows_with, 50));
+	//Operations
+	div= ButtonFactory().CreateAddButton(this, 1, " / ",button_sqare_size,0,200,"Red","white",fontOp);
+	div->Bind(wxEVT_BUTTON, &MainWindows::Clickon_Div,this);
+
+	subtract = ButtonFactory().CreateAddButton(this, 2, " - ", button_sqare_size,0,300, "Red", "white",fontOp);
+	subtract->Bind(wxEVT_BUTTON, &MainWindows::Clickon_subtract, this);
+
+	addition = ButtonFactory().CreateAddButton(this, 3, " + ", button_sqare_size, 0, 400, "Red", "white", fontOp);
+	addition->Bind(wxEVT_BUTTON, &MainWindows::Clickon_Add, this);
+
+	mult = ButtonFactory().CreateAddButton(this, 4, " * ", button_sqare_size, 0, 500, "Red", "white", fontOp);
+	mult->Bind(wxEVT_BUTTON, &MainWindows::Clickon_Mult, this);
 
 
-#if IsOnHex  
-	 windows_hight = 890;
-	 windows_with = 415;
-	A = new wxButton(this, 10, " A ", wxPoint(0, 800), wxSize(button_sqare_size - 50, button_sqare_size - 50));
-	B =  new wxButton(this, 11, " B ", wxPoint(50, 800), wxSize(button_sqare_size - 50, button_sqare_size - 50));
-	C = new wxButton(this, 12, " C ", wxPoint(100, 800), wxSize(button_sqare_size - 50, button_sqare_size - 50));
-	D = new wxButton(this, 13, " D ", wxPoint(150, 800), wxSize(button_sqare_size - 50, button_sqare_size - 50));
-	E = new wxButton(this,14, " E ", wxPoint(200, 800), wxSize(button_sqare_size - 50, button_sqare_size - 50));
-	F = new wxButton(this, 15, " F ", wxPoint(250, 800), wxSize(button_sqare_size - 50, button_sqare_size - 50));
+	//Numbers
+	zero = ButtonFactory().CreateAddButton(this, 1000, " 0 ", button_sqare_size, 200, 500, "Blue", "white", font);
+	zero->Bind(wxEVT_BUTTON, &MainWindows::Clickon_Zero, this);
+
+	one = ButtonFactory().CreateAddButton(this, 1001, " 1 ", button_sqare_size, 100, 200, "Blue", "white", font);
+	one->Bind(wxEVT_BUTTON, &MainWindows::Clickon_One, this);
 
 
-//colors
+	two = ButtonFactory().CreateAddButton(this, 1002, " 2 ", button_sqare_size, 200, 200, "Blue", "white", font);
+	two->Bind(wxEVT_BUTTON, &MainWindows::Clickon_Two, this);
 	
-	A->SetBackgroundColour("yellow");
+	three = ButtonFactory().CreateAddButton(this, 1003, " 3 ", button_sqare_size, 300, 200, "Blue", "white", font);
+	three->Bind(wxEVT_BUTTON, &MainWindows::Clickon_Three, this);
+
+
+	four = ButtonFactory().CreateAddButton(this, 1004, " 4 ", button_sqare_size, 100, 300, "Blue", "white", font);
+	four->Bind(wxEVT_BUTTON, &MainWindows::Clickon_Four, this);
+
+	five = ButtonFactory().CreateAddButton(this, 1005, " 5 ", button_sqare_size, 200, 300, "Blue", "white", font);
+	five->Bind(wxEVT_BUTTON, &MainWindows::Clickon_Five, this);
+
+	six = ButtonFactory().CreateAddButton(this, 1006, " 6 ", button_sqare_size, 300, 300, "Blue", "white", font);
+	six->Bind(wxEVT_BUTTON, &MainWindows::Clickon_Six, this);
+
+	seven = ButtonFactory().CreateAddButton(this, 1007, " 7 ", button_sqare_size, 100, 400, "Blue", "white", font);
+	seven->Bind(wxEVT_BUTTON, &MainWindows::Clickon_Seven, this);
+
+	eight = ButtonFactory().CreateAddButton(this, 1008, " 8 ", button_sqare_size, 200, 400, "Blue", "white", font);
+	eight->Bind(wxEVT_BUTTON, &MainWindows::Clickon_Eight, this);
+
+	nine = ButtonFactory().CreateAddButton(this, 1009, " 9 ", button_sqare_size, 300, 400, "Blue", "white", font);
+	nine->Bind(wxEVT_BUTTON, &MainWindows::Clickon_Nine, this);
+
+	//Special OP
 	
-	B->SetBackgroundColour("yellow");
+	mod = ButtonFactory().CreateAddButton(this, 5, " Mod ", button_sqare_size, 100, 500, "magenta", "white", font);
+	mod->Bind(wxEVT_BUTTON, &MainWindows::Clickon_Mod, this);
+
+	equal = ButtonFactory().CreateAddButton(this, 6, " = ", button_sqare_size, 300, 500, "magenta", "white", font);
+	equal->Bind(wxEVT_BUTTON, &MainWindows::Clickon_Equal, this);
+
+	Point = ButtonFactory().CreateAddButton(this, 7, " . ", button_sqare_size, 300, 600, "magenta", "white", font);
+	Point->Bind(wxEVT_BUTTON, &MainWindows::Clickon_Point, this);
+
+	clear = ButtonFactory().CreateAddButton(this, 8, " CE ", windows_with,50, 0, 700, "cyan", "white", font);
+	clear->Bind(wxEVT_BUTTON, &MainWindows::Clickon_Clear, this);
+
+	Negate = ButtonFactory().CreateAddButton(this, 9, " Negate(-) ", windows_with, 50, 0, 750, "cyan", "white", font);
+	Negate->Bind(wxEVT_BUTTON, &MainWindows::Clickon_Negate, this);
+
+
+	//modes
+	Dec = ButtonFactory().CreateAddButton(this, 100, " DEC ", button_sqare_size, 0, 600, "Yellow", "Black", fontTypeOfNumbers);
+
+   	 Bin = ButtonFactory().CreateAddButton(this, 101, " BIN ", button_sqare_size, 100, 600, "Yellow", "Black", fontTypeOfNumbers);
+	 Bin->Bind(wxEVT_BUTTON, &MainWindows::Clickon_bin, this);
+
+	 Hex= ButtonFactory().CreateAddButton(this, 102, " HEX ", button_sqare_size, 200, 600, "Yellow", "Black", fontTypeOfNumbers);
+	 Hex->Bind(wxEVT_BUTTON, &MainWindows::Clickon_hex, this);
 	
-	C->SetBackgroundColour("yellow");
 	
-	D->SetBackgroundColour("yellow");
 
-	E->SetBackgroundColour("yellow");
+
+	//hex
+	A = ButtonFactory().CreateAddButton(this, 10, " A ", button_sqare_size-50, 0, 800, "Grey ", "Black", fontTypeOfNumbers); A->Bind(wxEVT_BUTTON, &MainWindows::Clickon_A, this);
+	B = ButtonFactory().CreateAddButton(this, 11, " B ", button_sqare_size - 50, 50, 800, "Grey ", "Black", fontTypeOfNumbers); B->Bind(wxEVT_BUTTON, &MainWindows::Clickon_B, this);
+	C = ButtonFactory().CreateAddButton(this, 12, " C ", button_sqare_size - 50, 100, 800, "Grey ", "Black", fontTypeOfNumbers); C->Bind(wxEVT_BUTTON, &MainWindows::Clickon_C, this);
+	D = ButtonFactory().CreateAddButton(this, 13, " D ", button_sqare_size - 50, 150, 800, "Grey ", "Black", fontTypeOfNumbers); D->Bind(wxEVT_BUTTON, &MainWindows::Clickon_D, this);
+	E = ButtonFactory().CreateAddButton(this, 14, " E ", button_sqare_size - 50, 200, 800, "Grey ", "Black", fontTypeOfNumbers); E->Bind(wxEVT_BUTTON, &MainWindows::Clickon_E, this);
+	F = ButtonFactory().CreateAddButton(this, 15, " A ", button_sqare_size - 50, 250, 800, "Grey ", "Black", fontTypeOfNumbers); F->Bind(wxEVT_BUTTON, &MainWindows::Clickon_F, this);
+
+
 	
-	F ->SetBackgroundColour("yellow");
-
-
-#endif // 0
 
 
 
-	//Modify Buttons
-
-
- Hex->SetBackgroundColour("yellow");
-
-
-	equal->SetForegroundColour("White");
-	equal->SetBackgroundColour("Blue");
-	
-	div->SetForegroundColour("White");
-	div->SetBackgroundColour("Red");
-
-	mult->SetForegroundColour("White");
-	mult->SetBackgroundColour("Red");
-
-	mod->SetForegroundColour("White");
-	mod->SetBackgroundColour("Red");
-	
-	addition->SetForegroundColour("White");
-	addition->SetBackgroundColour("Red");
-
-	subtract->SetForegroundColour("White");
-	subtract->SetBackgroundColour("Red");
-
-	Bin->SetBackgroundColour("blue");
-	zero->SetBackgroundColour("blue");
-	one->SetBackgroundColour("blue");
-	Point->SetBackgroundColour("Blue");
-	two->SetBackgroundColour("blue");
-	three->SetBackgroundColour("blue");
-	four->SetBackgroundColour("blue");
-	five->SetBackgroundColour("Blue");
-	six->SetBackgroundColour("blue");
-	seven->SetBackgroundColour("blue");
-	eight->SetBackgroundColour("blue");
-	nine->SetBackgroundColour("Blue");
-	Dec->SetBackgroundColour("Blue");
-
-	Negate->SetBackgroundColour("grey");
-	clear -> SetBackgroundColour("grey");
-
-	Bin->SetForegroundColour("White");
-	zero->SetForegroundColour("White");
-	one->SetForegroundColour("White");
-	Point->SetForegroundColour("White");
-	two->SetForegroundColour("White");
-	three->SetForegroundColour("White");
-	four->SetForegroundColour("White");
-	five->SetForegroundColour("White");
-	six->SetForegroundColour("White");
-	seven->SetForegroundColour("White");
-	eight->SetForegroundColour("White");
-	nine->SetForegroundColour("White");
-	Dec->SetForegroundColour("White");
 	//Display Settings
 	Sizer = new wxBoxSizer(wxVERTICAL);
 	Sizer->Add(numDisp, 0, wxEXPAND);
@@ -177,406 +129,21 @@ MainWindows::MainWindows(): wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(50,
 	font_NumbD.SetPixelSize(wxSize(25,25));
 
 
-	wxFont font(24, wxFONTFAMILY_TELETYPE, wxFONTSTYLE_MAX, wxFONTWEIGHT_EXTRABOLD,false);
-	wxFont fontOp(26, wxFONTFAMILY_SCRIPT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_EXTRAHEAVY, false);
-	wxFont fontTypeOfNumbers(20, wxFONTFAMILY_DECORATIVE, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false);
+	
 	numDisp->SetFont(fontTypeOfNumbers);
 	numDisp->Clear();
 	numDisp->AppendText("\n\n\n");
 
-	//numbs
-	zero->SetFont(font);
-	one->SetFont(font);
-	two->SetFont(font);
-	three->SetFont(font);
-	four->SetFont(font);
-	five->SetFont(font);
-    six->SetFont(font);
-	seven->SetFont(font);
-	eight->SetFont(font);
-	nine->SetFont(font);
-	clear->SetFont(font);
-	
-	//operations
-	div->SetFont(fontOp);
-	mult->SetFont(fontOp);
-	addition->SetFont(fontOp);
-	subtract->SetFont(fontOp);
-	equal->SetFont(fontOp);
-	Point->SetFont(fontOp);
-	Negate->SetFont(fontOp);
-	//Type of numbs
-	mod->SetFont(fontTypeOfNumbers);
-	Dec->SetFont(fontTypeOfNumbers);
-	Bin->SetFont(fontTypeOfNumbers);
-	Hex->SetFont(fontTypeOfNumbers);
+
 }
 
 
-#pragma region Buttons
 
 
 
-void MainWindows::Clickon_Zero(wxCommandEvent& event) {
-	
 
-	if (Iszero) {
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(zero->GetLabelText());
-		
-	}
-	else if (!Iszero) {
-		numDisp->AppendText(zero->GetLabelText());
 
-	}
 
-	
 
 
 
-	event.Skip(); 
-}
-
-
-void MainWindows::Clickon_One(wxCommandEvent& event) {  
-	numDisp->AppendText(one->GetLabelText());
-
-
-if (Iszero) {
-
-	numDisp->Clear();
-	numDisp->AppendText("\n\n\n");
-	numDisp->AppendText(one->GetLabelText());
-}
-
-Iszero = false;
-event.Skip(); 
-}
-
-void MainWindows::Clickon_Two(wxCommandEvent& event) {
-	numDisp->AppendText(two->GetLabelText());
-
-
-	if (Iszero) {
-
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(two->GetLabelText());
-	}
-
-	Iszero = false;
-	event.Skip();
-}
-
-
-void MainWindows::Clickon_Three(wxCommandEvent& event) {
-	numDisp->AppendText(three->GetLabelText());
-
-
-	if (Iszero) {
-
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(three->GetLabelText());
-	}
-
-	Iszero = false;
-	event.Skip();
-}
-
-void MainWindows::Clickon_Four(wxCommandEvent& event) {
-	numDisp->AppendText(four->GetLabelText());
-
-
-	if (Iszero) {
-
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(four->GetLabelText());
-	}
-
-	Iszero = false;
-	event.Skip();
-}
-
-void MainWindows::Clickon_Five(wxCommandEvent& event) {
-	numDisp->AppendText(five->GetLabelText());
-
-
-	if (Iszero) {
-
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(five->GetLabelText());
-	}
-
-	Iszero = false;
-	event.Skip();
-}
-
-void MainWindows::Clickon_Six(wxCommandEvent& event) {
-	numDisp->AppendText(six->GetLabelText());
-
-
-	if (Iszero) {
-
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(six->GetLabelText());
-	}
-
-	Iszero = false;
-	event.Skip();
-}
-
-void MainWindows::Clickon_Seven(wxCommandEvent& event) {
-	numDisp->AppendText(seven->GetLabelText());
-
-
-	if (Iszero) {
-
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(seven->GetLabelText());
-	}
-
-	Iszero = false;
-	event.Skip();
-}
-
-void MainWindows::Clickon_Eight(wxCommandEvent& event) {
-	numDisp->AppendText(eight->GetLabelText());
-
-
-	if (Iszero) {
-
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(eight->GetLabelText());
-	}
-
-	Iszero = false;
-	event.Skip();
-}
-
-void MainWindows::Clickon_Nine(wxCommandEvent& event) {
-	numDisp->AppendText(nine->GetLabelText());
-
-
-	if (Iszero) {
-
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(nine->GetLabelText());
-	}
-
-	Iszero = false;
-	event.Skip();
-}
-////hex
-void MainWindows::Clickon_A(wxCommandEvent& event) {
-	numDisp->AppendText(A->GetLabelText());
-
-
-	if (Iszero) {
-
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(A->GetLabelText());
-	}
-
-	Iszero = false;
-	event.Skip();
-}
-void MainWindows::Clickon_B(wxCommandEvent& event) {
-	numDisp->AppendText(B->GetLabelText());
-
-
-	if (Iszero) {
-
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(B->GetLabelText());
-	}
-
-	Iszero = false;
-	event.Skip();
-}
-void MainWindows::Clickon_C(wxCommandEvent& event) {
-	numDisp->AppendText(D->GetLabelText());
-
-
-	if (Iszero) {
-
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(D->GetLabelText());
-	}
-
-	Iszero = false;
-	event.Skip();
-}
-void MainWindows::Clickon_D(wxCommandEvent& event) {
-	numDisp->AppendText(D->GetLabelText());
-
-
-	if (Iszero) {
-
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(D->GetLabelText());
-	}
-
-	Iszero = false;
-	event.Skip();
-}
-void MainWindows::Clickon_E(wxCommandEvent& event) {
-	numDisp->AppendText(E->GetLabelText());
-
-
-	if (Iszero) {
-
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(E->GetLabelText());
-	}
-
-	Iszero = false;
-	event.Skip();
-}
-void MainWindows::Clickon_F(wxCommandEvent& event) {
-	numDisp->AppendText(F->GetLabelText());
-
-
-	if (Iszero) {
-
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(F->GetLabelText());
-	}
-
-	Iszero = false;
-	event.Skip();
-}
-//operations
-void MainWindows::Clickon_subtract(wxCommandEvent& event) {
-	numDisp->AppendText(subtract->GetLabelText());
-
-
-	if (Iszero) {
-
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(subtract->GetLabelText());
-	}
-
-	Iszero = false;
-	event.Skip();
-}
-void MainWindows::Clickon_Add(wxCommandEvent& event) {
-	numDisp->AppendText(addition->GetLabelText());
-
-
-	if (Iszero) {
-
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(addition->GetLabelText());
-	}
-
-	Iszero = false;
-	event.Skip();
-}
-void MainWindows::Clickon_div(wxCommandEvent& event) {
-	numDisp->AppendText(div->GetLabelText());
-
-
-	if (Iszero) {
-
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(div->GetLabelText());
-	}
-
-	Iszero = false;
-	event.Skip();
-}
-void MainWindows::Clickon_Mult(wxCommandEvent& event) {
-	numDisp->AppendText(mult->GetLabelText());
-
-
-	if (Iszero) {
-
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(mult->GetLabelText());
-	}
-
-	Iszero = false;
-	event.Skip();
-}
-////special  op
-void MainWindows::Clickon_Mod(wxCommandEvent& event) {
-	numDisp->AppendText(mod->GetLabelText());
-
-
-	if (Iszero) {
-
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(mod->GetLabelText());
-	}
-
-	Iszero = false;
-	event.Skip();
-}
-void MainWindows::Clickon_Clear(wxCommandEvent& event) {
-	numDisp->Clear();
-	numDisp->AppendText("\n\n\n");
-	Iszero = true; 
-		event.Skip();
-
-}
-void MainWindows::Clickon_Equal(wxCommandEvent& event) {
-
-}
-void MainWindows::Clickon_Point(wxCommandEvent& event) {
-	numDisp->AppendText(Point->GetLabelText());
-
-
-
-	Iszero = false;
-	event.Skip();
-}
-void MainWindows::Clickon_Negate(wxCommandEvent& event) {
-	wxString inf = numDisp->GetValue();
-	
-	if (!Iszero&&!is_negative) {
-
-		numDisp->Clear();
-		
-		
-		numDisp->SetValue("-(First is Negative)"+ inf);
-		
-		is_negative = true;
-	}
-	event.Skip();
-}
-////modes
-void MainWindows::Clickon_bin(wxCommandEvent& event) {
-	
-	//to be worked 
-
-}
-void MainWindows::Clickon_hex(wxCommandEvent& event) {
-	//not ready yet working on logic 
-
-	
-}
-void MainWindows::Clickon_dec(wxCommandEvent& event) {
-
-	//needs some code
-	
-}
-#pragma endregion
