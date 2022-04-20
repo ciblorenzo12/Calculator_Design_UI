@@ -52,14 +52,10 @@ public :
 	wxButton* Point = nullptr;
 	wxButton* clear = nullptr;
 	wxButton* backspace = nullptr;
-	
-	
 
 	//sizer
 wxSizer* Sizer = nullptr;
 
-//Events Table
-//wxDECLARE_EVENT_TABLE();
 //click function events
 void Clickon_Zero(wxCommandEvent& event);
 void Clickon_One(wxCommandEvent& event);
