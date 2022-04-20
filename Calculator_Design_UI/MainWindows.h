@@ -1,9 +1,7 @@
 #pragma once
 #include "wx/wx.h"
 
-#define IsOnBin 0
-#define IsOnDec 0
-#define IsOnHex 0
+
 
 class MainWindows:public wxFrame
 {
