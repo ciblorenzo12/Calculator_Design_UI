@@ -1,10 +1,10 @@
 #include "MainWindows.h"
-#include <string>
-#include "ButtonFactory.h"
+
 
 MainWindows::MainWindows() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(50, 50), wxSize(windows_with, windows_hight)) {
 	//Display
-	numDisp = new wxTextCtrl(this, wxID_ANY, "\n\n\n 0", wxPoint(50, 1), wxSize(windows_with, 200), wxTE_MULTILINE | wxTE_RICH2 | wxTE_READONLY | wxTE_CENTER | wxTE_NO_VSCROLL);
+	Caculator_Processator::Getinstance().numDisp;
+	Caculator_Processator::Getinstance().numDisp = new wxTextCtrl(this, wxID_ANY, "\n\n\n 0", wxPoint(50, 1), wxSize(415, 200), wxTE_MULTILINE | wxTE_RICH2 | wxTE_READONLY | wxTE_CENTER | wxTE_NO_VSCROLL);
 	wxFont font(24, wxFONTFAMILY_TELETYPE, wxFONTSTYLE_MAX, wxFONTWEIGHT_EXTRABOLD, false);
 	wxFont fontOp(26, wxFONTFAMILY_SCRIPT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_EXTRAHEAVY, false);
 	wxFont fontTypeOfNumbers(20, wxFONTFAMILY_DECORATIVE, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false);
@@ -90,8 +90,8 @@ MainWindows::MainWindows() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(50
 
 	//Display Settings
 	Sizer = new wxBoxSizer(wxVERTICAL);
-	Sizer->Add(numDisp, 0, wxEXPAND);
-	numDisp->SetBackgroundColour(wxColor("white"));
+	Sizer->Add(Caculator_Processator::Getinstance().numDisp, 0, wxEXPAND);
+	Caculator_Processator::Getinstance().numDisp->SetBackgroundColour(wxColor("white"));
 
 	//frame sizer
 	this->SetMaxSize(wxSize(windows_with, windows_hight));
@@ -102,9 +102,9 @@ MainWindows::MainWindows() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(50
 	wxFont font_NumbD(18, wxFONTFAMILY_SWISS,wxFONTSTYLE_SLANT, wxFONTWEIGHT_EXTRABOLD, false);
 	font_NumbD.SetPixelSize(wxSize(25,25));
 
-	numDisp->SetFont(fontTypeOfNumbers);
-	numDisp->Clear();
-	numDisp->AppendText("\n\n\n");
+	Caculator_Processator::Getinstance().numDisp->SetFont(fontTypeOfNumbers);
+	Caculator_Processator::Getinstance().numDisp->Clear();
+	Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
 
 }
 
