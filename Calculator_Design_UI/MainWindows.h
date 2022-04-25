@@ -1,8 +1,8 @@
 #pragma once
 #include "wx/wx.h"
-
-
-
+#include "Caculator_Processator.h"
+#include <string>
+#include "ButtonFactory.h"
 class MainWindows:public wxFrame
 {
 public :
@@ -13,10 +13,9 @@ public :
 	bool first_click = true;
 	//calc 
 	bool is_negative = false;
-	//int Numb1;
-	//int Numb2;
-	//Display
-	wxTextCtrl* numDisp = nullptr;
+	
+
+	
 	
 	//fonts
 
@@ -53,12 +52,9 @@ public :
 	wxButton* Point = nullptr;
 	wxButton* clear = nullptr;
 	wxButton* backspace = nullptr;
-	
-	
 
 	//sizer
 wxSizer* Sizer = nullptr;
-
 
 //click function events
 void Clickon_Zero(wxCommandEvent& event);
@@ -95,8 +91,10 @@ void Clickon_hex(wxCommandEvent& event);
 void Clickon_dec(wxCommandEvent& event);
 //bool for checking if is 0
 
-private :
-	bool Iszero = true;
 
+private :
+
+	bool Iszero = true;
+	
 };
 

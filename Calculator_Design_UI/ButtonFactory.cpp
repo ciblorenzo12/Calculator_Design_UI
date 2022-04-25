@@ -1,5 +1,5 @@
 #include "ButtonFactory.h"
-#include "MainWindows.h"
+
 
 
 
@@ -39,14 +39,14 @@ wxButton* ButtonFactory::CreateAddButton(wxWindow* parent, int id, wxString labe
 //Operations clicked events
 void MainWindows::Clickon_Div(wxCommandEvent& event ) {
 
-	numDisp->AppendText(div->GetLabelText());
+	Caculator_Processator::Getinstance().numDisp->AppendText(div->GetLabelText());
 
 
 	if (Iszero) {
 
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(div->GetLabelText());
+		Caculator_Processator::Getinstance().numDisp->Clear();
+		Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
+		Caculator_Processator::Getinstance().numDisp->AppendText(div->GetLabelText());
 	}
 
 	Iszero = false;
@@ -55,42 +55,42 @@ void MainWindows::Clickon_Div(wxCommandEvent& event ) {
 
 }
 void MainWindows::Clickon_subtract(wxCommandEvent& event) {
-	numDisp->AppendText(subtract->GetLabelText());
+	Caculator_Processator::Getinstance().numDisp->AppendText(subtract->GetLabelText());
 
 
 	if (Iszero) {
 
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(subtract->GetLabelText());
+		Caculator_Processator::Getinstance().numDisp->Clear();
+		Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
+		Caculator_Processator::Getinstance().numDisp->AppendText(subtract->GetLabelText());
 	}
 
 	Iszero = false;
 	event.Skip();
 }
 void MainWindows::Clickon_Add(wxCommandEvent& event) {
-	numDisp->AppendText(addition->GetLabelText());
+	Caculator_Processator::Getinstance().numDisp->AppendText(addition->GetLabelText());
 
 
 	if (Iszero) {
 
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(addition->GetLabelText());
+		Caculator_Processator::Getinstance().numDisp->Clear();
+		Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
+		Caculator_Processator::Getinstance().numDisp->AppendText(addition->GetLabelText());
 	}
 
 	Iszero = false;
 	event.Skip();
 }
 void MainWindows::Clickon_Mult(wxCommandEvent& event) {
-	numDisp->AppendText(mult->GetLabelText());
+	Caculator_Processator::Getinstance().numDisp->AppendText(mult->GetLabelText());
 
 
 	if (Iszero) {
 
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(mult->GetLabelText());
+		Caculator_Processator::Getinstance().numDisp->Clear();
+		Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
+		Caculator_Processator::Getinstance().numDisp->AppendText(mult->GetLabelText());
 	}
 
 	Iszero = false;
@@ -102,13 +102,13 @@ void MainWindows::Clickon_Zero(wxCommandEvent& event) {
 
 
 	if (Iszero) {
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(zero->GetLabelText());
+		Caculator_Processator::Getinstance().numDisp->Clear();
+		Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
+		Caculator_Processator::Getinstance().numDisp->AppendText(zero->GetLabelText());
 
 	}
 	else if (!Iszero) {
-		numDisp->AppendText(zero->GetLabelText());
+		Caculator_Processator::Getinstance().numDisp->AppendText(zero->GetLabelText());
 
 	}
 
@@ -121,126 +121,126 @@ void MainWindows::Clickon_Zero(wxCommandEvent& event) {
 void MainWindows::Clickon_One(wxCommandEvent& event)
 
 {
-	numDisp->AppendText(one->GetLabelText());
+	Caculator_Processator::Getinstance().numDisp->AppendText(one->GetLabelText());
 
 
 	if (Iszero) {
 
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(one->GetLabelText());
+		Caculator_Processator::Getinstance().numDisp->Clear();
+		Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
+		Caculator_Processator::Getinstance().numDisp->AppendText(one->GetLabelText());
 	}
 
 	Iszero = false;
 	event.Skip();
 }
 void MainWindows::Clickon_Two(wxCommandEvent& event) {
-	numDisp->AppendText(two->GetLabelText());
+	Caculator_Processator::Getinstance().numDisp->AppendText(two->GetLabelText());
 
 
 	if (Iszero) {
 
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(two->GetLabelText());
+		Caculator_Processator::Getinstance().numDisp->Clear();
+		Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
+		Caculator_Processator::Getinstance().numDisp->AppendText(two->GetLabelText());
 	}
 
 	Iszero = false;
 	event.Skip();
 }
 void MainWindows::Clickon_Three(wxCommandEvent& event) {
-	numDisp->AppendText(three->GetLabelText());
+	Caculator_Processator::Getinstance().numDisp->AppendText(three->GetLabelText());
 
 
 	if (Iszero) {
 
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(three->GetLabelText());
+		Caculator_Processator::Getinstance().numDisp->Clear();
+		Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
+		Caculator_Processator::Getinstance().numDisp->AppendText(three->GetLabelText());
 	}
 
 	Iszero = false;
 	event.Skip();
 }
 void MainWindows::Clickon_Four(wxCommandEvent& event) {
-	numDisp->AppendText(four->GetLabelText());
+	Caculator_Processator::Getinstance().numDisp->AppendText(four->GetLabelText());
 
 
 	if (Iszero) {
 
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(four->GetLabelText());
+		Caculator_Processator::Getinstance().numDisp->Clear();
+		Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
+		Caculator_Processator::Getinstance().numDisp->AppendText(four->GetLabelText());
 	}
 
 	Iszero = false;
 	event.Skip();
 }
 void MainWindows::Clickon_Five(wxCommandEvent& event) {
-	numDisp->AppendText(five->GetLabelText());
+	Caculator_Processator::Getinstance().numDisp->AppendText(five->GetLabelText());
 
 
 	if (Iszero) {
 
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(five->GetLabelText());
+		Caculator_Processator::Getinstance().numDisp->Clear();
+		Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
+		Caculator_Processator::Getinstance().numDisp->AppendText(five->GetLabelText());
 	}
 
 	Iszero = false;
 	event.Skip();
 }
 void MainWindows::Clickon_Six(wxCommandEvent& event) {
-	numDisp->AppendText(six->GetLabelText());
+	Caculator_Processator::Getinstance().numDisp->AppendText(six->GetLabelText());
 
 
 	if (Iszero) {
 
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(six->GetLabelText());
+		Caculator_Processator::Getinstance().numDisp->Clear();
+		Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
+		Caculator_Processator::Getinstance().numDisp->AppendText(six->GetLabelText());
 	}
 
 	Iszero = false;
 	event.Skip();
 }
 void MainWindows::Clickon_Seven(wxCommandEvent& event) {
-	numDisp->AppendText(seven->GetLabelText());
+	Caculator_Processator::Getinstance().numDisp->AppendText(seven->GetLabelText());
 
 
 	if (Iszero) {
 
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(seven->GetLabelText());
+		Caculator_Processator::Getinstance().numDisp->Clear();
+		Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
+		Caculator_Processator::Getinstance().numDisp->AppendText(seven->GetLabelText());
 	}
 
 	Iszero = false;
 	event.Skip();
 }
 void MainWindows::Clickon_Eight(wxCommandEvent& event) {
-	numDisp->AppendText(eight->GetLabelText());
+	Caculator_Processator::Getinstance().numDisp->AppendText(eight->GetLabelText());
 
 
 	if (Iszero) {
 
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(eight->GetLabelText());
+		Caculator_Processator::Getinstance().numDisp->Clear();
+		Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
+		Caculator_Processator::Getinstance().numDisp->AppendText(eight->GetLabelText());
 	}
 
 	Iszero = false;
 	event.Skip();
 }
 void MainWindows::Clickon_Nine(wxCommandEvent& event) {
-	numDisp->AppendText(nine->GetLabelText());
+	Caculator_Processator::Getinstance().numDisp->AppendText(nine->GetLabelText());
 
 
 	if (Iszero) {
 
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(nine->GetLabelText());
+		Caculator_Processator::Getinstance().numDisp->Clear();
+		Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
+		Caculator_Processator::Getinstance().numDisp->AppendText(nine->GetLabelText());
 	}
 
 	Iszero = false;
@@ -249,22 +249,22 @@ void MainWindows::Clickon_Nine(wxCommandEvent& event) {
 
 //Special Operations
 void MainWindows::Clickon_Mod(wxCommandEvent& event) {
-	numDisp->AppendText(mod->GetLabelText());
+	Caculator_Processator::Getinstance().numDisp->AppendText(mod->GetLabelText());
 
 
 	if (Iszero) {
 
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(mod->GetLabelText());
+		Caculator_Processator::Getinstance().numDisp->Clear();
+		Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
+		Caculator_Processator::Getinstance().numDisp->AppendText(mod->GetLabelText());
 	}
 
 	Iszero = false;
 	event.Skip();
 }
 void MainWindows::Clickon_Clear(wxCommandEvent& event) {
-	numDisp->Clear();
-	numDisp->AppendText("\n\n\n");
+	Caculator_Processator::Getinstance().numDisp->Clear();
+	Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
 	Iszero = true;
 	event.Skip();
 
@@ -273,7 +273,7 @@ void MainWindows::Clickon_Equal(wxCommandEvent& event) {
 
 }
 void MainWindows::Clickon_Point(wxCommandEvent& event) {
-	numDisp->AppendText(Point->GetLabelText());
+	Caculator_Processator::Getinstance().numDisp->AppendText(Point->GetLabelText());
 
 
 
@@ -281,14 +281,14 @@ void MainWindows::Clickon_Point(wxCommandEvent& event) {
 	event.Skip();
 }
 void MainWindows::Clickon_Negate(wxCommandEvent& event) {
-	wxString inf = numDisp->GetValue();
+	wxString inf = Caculator_Processator::Getinstance().numDisp->GetValue();
 
 	if (!Iszero && !is_negative) {
 
-		numDisp->Clear();
+		Caculator_Processator::Getinstance().numDisp->Clear();
 
 
-		numDisp->SetValue("-(First is Negative)" + inf);
+		Caculator_Processator::Getinstance().numDisp->SetValue("-(First is Negative)" + inf);
 
 		is_negative = true;
 	}
@@ -297,84 +297,84 @@ void MainWindows::Clickon_Negate(wxCommandEvent& event) {
 
 //Hex
 void MainWindows::Clickon_A(wxCommandEvent& event) {
-	numDisp->AppendText(A->GetLabelText());
+	Caculator_Processator::Getinstance().numDisp->AppendText(A->GetLabelText());
 
 
 	if (Iszero) {
 
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(A->GetLabelText());
+		Caculator_Processator::Getinstance().numDisp->Clear();
+		Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
+		Caculator_Processator::Getinstance().numDisp->AppendText(A->GetLabelText());
 	}
 
 	Iszero = false;
 	event.Skip();
 }
 void MainWindows::Clickon_B(wxCommandEvent& event) {
-	numDisp->AppendText(B->GetLabelText());
+	Caculator_Processator::Getinstance().numDisp->AppendText(B->GetLabelText());
 
 
 	if (Iszero) {
 
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(B->GetLabelText());
+		Caculator_Processator::Getinstance().numDisp->Clear();
+		Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
+		Caculator_Processator::Getinstance().numDisp->AppendText(B->GetLabelText());
 	}
 
 	Iszero = false;
 	event.Skip();
 }
 void MainWindows::Clickon_C(wxCommandEvent& event) {
-	numDisp->AppendText(C->GetLabelText());
+	Caculator_Processator::Getinstance().numDisp->AppendText(C->GetLabelText());
 
 
 	if (Iszero) {
 
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(C->GetLabelText());
+		Caculator_Processator::Getinstance().numDisp->Clear();
+		Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
+		Caculator_Processator::Getinstance().numDisp->AppendText(C->GetLabelText());
 	}
 
 	Iszero = false;
 	event.Skip();
 }
 void MainWindows::Clickon_D(wxCommandEvent& event) {
-	numDisp->AppendText(D->GetLabelText());
+	Caculator_Processator::Getinstance().numDisp->AppendText(D->GetLabelText());
 
 
 	if (Iszero) {
 
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(D->GetLabelText());
+		Caculator_Processator::Getinstance().numDisp->Clear();
+		Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
+		Caculator_Processator::Getinstance().numDisp->AppendText(D->GetLabelText());
 	}
 
 	Iszero = false;
 	event.Skip();
 }
 void MainWindows::Clickon_E(wxCommandEvent& event) {
-	numDisp->AppendText(E->GetLabelText());
+	Caculator_Processator::Getinstance().numDisp->AppendText(E->GetLabelText());
 
 
 	if (Iszero) {
 
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(E->GetLabelText());
+		Caculator_Processator::Getinstance().numDisp->Clear();
+		Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
+		Caculator_Processator::Getinstance().numDisp->AppendText(E->GetLabelText());
 	}
 
 	Iszero = false;
 	event.Skip();
 }
 void MainWindows::Clickon_F(wxCommandEvent& event) {
-	numDisp->AppendText(F->GetLabelText());
+	Caculator_Processator::Getinstance().numDisp->AppendText(F->GetLabelText());
 
 
 	if (Iszero) {
 
-		numDisp->Clear();
-		numDisp->AppendText("\n\n\n");
-		numDisp->AppendText(F->GetLabelText());
+		Caculator_Processator::Getinstance().numDisp->Clear();
+		Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
+		Caculator_Processator::Getinstance().numDisp->AppendText(F->GetLabelText());
 	}
 
 	Iszero = false;

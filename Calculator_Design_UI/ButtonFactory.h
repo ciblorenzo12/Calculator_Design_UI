@@ -1,7 +1,7 @@
 #pragma once
 #include "wx/wx.h"
 #include "MainWindows.h"
-
+#include "Caculator_Processator.h"
 
 class ButtonFactory
 {
