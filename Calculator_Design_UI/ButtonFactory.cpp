@@ -1,5 +1,6 @@
 #include "ButtonFactory.h"
-
+#include <string>
+#include <vector>
 
 
 
@@ -38,16 +39,22 @@ wxButton* ButtonFactory::CreateAddButton(wxWindow* parent, int id, wxString labe
 
 //Operations clicked events
 void MainWindows::Clickon_Div(wxCommandEvent& event ) {
-
-	Caculator_Processator::Getinstance().numDisp->AppendText(div->GetLabelText());
-
-
+	if (!Iszero) {
+		Caculator_Processator::Getinstance().FirstNumb = std::stof((std::string(Caculator_Processator::Getinstance().numDisp->GetValue())));
+	}
 	if (Iszero) {
-
+		Caculator_Processator::Getinstance().numDisp->AppendText("N/A");
 		Caculator_Processator::Getinstance().numDisp->Clear();
 		Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
 		Caculator_Processator::Getinstance().numDisp->AppendText(div->GetLabelText());
 	}
+
+	Caculator_Processator::Getinstance().OperatorOnScreen = div->GetLabelText();
+	Caculator_Processator::Getinstance().numDisp->Clear();
+	Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
+
+
+
 
 	Iszero = false;
 	event.Skip();
@@ -55,8 +62,14 @@ void MainWindows::Clickon_Div(wxCommandEvent& event ) {
 
 }
 void MainWindows::Clickon_subtract(wxCommandEvent& event) {
-	Caculator_Processator::Getinstance().numDisp->AppendText(subtract->GetLabelText());
+	if (!Iszero) {
 
+		Caculator_Processator::Getinstance().FirstNumb = std::stof((std::string(Caculator_Processator::Getinstance().numDisp->GetValue())));
+
+		Caculator_Processator::Getinstance().OperatorOnScreen = subtract->GetLabelText();
+		Caculator_Processator::Getinstance().numDisp->Clear();
+		Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
+	}
 
 	if (Iszero) {
 
@@ -69,8 +82,20 @@ void MainWindows::Clickon_subtract(wxCommandEvent& event) {
 	event.Skip();
 }
 void MainWindows::Clickon_Add(wxCommandEvent& event) {
-	Caculator_Processator::Getinstance().numDisp->AppendText(addition->GetLabelText());
+	if (!Iszero) {
 
+		Caculator_Processator::Getinstance().FirstNumb = std::stof((std::string(Caculator_Processator::Getinstance().numDisp->GetValue())));
+
+		Caculator_Processator::Getinstance().OperatorOnScreen = addition->GetLabelText();
+		Caculator_Processator::Getinstance().numDisp->Clear();
+		Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
+
+	}
+
+
+
+
+	
 
 	if (Iszero) {
 
@@ -83,8 +108,16 @@ void MainWindows::Clickon_Add(wxCommandEvent& event) {
 	event.Skip();
 }
 void MainWindows::Clickon_Mult(wxCommandEvent& event) {
-	Caculator_Processator::Getinstance().numDisp->AppendText(mult->GetLabelText());
+	
+	if (!Iszero) {
 
+		Caculator_Processator::Getinstance().FirstNumb = std::stof((std::string(Caculator_Processator::Getinstance().numDisp->GetValue())));
+
+		Caculator_Processator::Getinstance().OperatorOnScreen = mult->GetLabelText();
+		Caculator_Processator::Getinstance().numDisp->Clear();
+		Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
+
+	}
 
 	if (Iszero) {
 
@@ -249,18 +282,23 @@ void MainWindows::Clickon_Nine(wxCommandEvent& event) {
 
 //Special Operations
 void MainWindows::Clickon_Mod(wxCommandEvent& event) {
-	Caculator_Processator::Getinstance().numDisp->AppendText(mod->GetLabelText());
-
-
-	if (Iszero) {
-
+	if (!Iszero) {
+		Caculator_Processator::Getinstance().FirstNumb = std::stof((std::string(Caculator_Processator::Getinstance().numDisp->GetValue())));
+		Caculator_Processator::Getinstance().OperatorOnScreen = "Mod";
 		Caculator_Processator::Getinstance().numDisp->Clear();
 		Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
-		Caculator_Processator::Getinstance().numDisp->AppendText(mod->GetLabelText());
-	}
 
-	Iszero = false;
-	event.Skip();
+
+		if (Iszero) {
+
+			Caculator_Processator::Getinstance().numDisp->Clear();
+			Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
+			Caculator_Processator::Getinstance().numDisp->AppendText(mod->GetLabelText());
+		}
+
+		Iszero = false;
+		event.Skip();
+	}
 }
 void MainWindows::Clickon_Clear(wxCommandEvent& event) {
 	Caculator_Processator::Getinstance().numDisp->Clear();
@@ -271,115 +309,83 @@ void MainWindows::Clickon_Clear(wxCommandEvent& event) {
 }
 void MainWindows::Clickon_Equal(wxCommandEvent& event) {
 
-}
-void MainWindows::Clickon_Point(wxCommandEvent& event) {
-	Caculator_Processator::Getinstance().numDisp->AppendText(Point->GetLabelText());
+	Caculator_Processator::Getinstance().SecondNumb = std::stof((std::string(Caculator_Processator::Getinstance().numDisp->GetValue())));
 
-
-
-	Iszero = false;
-	event.Skip();
-}
-void MainWindows::Clickon_Negate(wxCommandEvent& event) {
-	wxString inf = Caculator_Processator::Getinstance().numDisp->GetValue();
-
-	if (!Iszero && !is_negative) {
-
-		Caculator_Processator::Getinstance().numDisp->Clear();
-
-
-		Caculator_Processator::Getinstance().numDisp->SetValue("-(First is Negative)" + inf);
-
-		is_negative = true;
+	Caculator_Processator::Getinstance().numDisp->Clear();
+	Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n ");
+	Caculator_Processator::Getinstance().numDisp->AppendText(std::to_string((int)Caculator_Processator::Getinstance().FirstNumb));
+	Caculator_Processator::Getinstance().numDisp->AppendText(Caculator_Processator::Getinstance().OperatorOnScreen);
+	Caculator_Processator::Getinstance().numDisp->AppendText(std::to_string((int)Caculator_Processator::Getinstance().SecondNumb));
+	Caculator_Processator::Getinstance().numDisp->AppendText(" = ");
+	
+	if (Caculator_Processator::Getinstance().OperatorOnScreen == '+') {
+		Caculator_Processator::AddCommands(Caculator_Processator::Getinstance().SecondNumb);
+		Caculator_Processator::AddCommands com;
+		com.Execute();
+		Caculator_Processator::Getinstance().FirstNumb = Caculator_Processator::Getinstance().result;
 	}
-	event.Skip();
-}
-
-//Hex
-void MainWindows::Clickon_A(wxCommandEvent& event) {
-	Caculator_Processator::Getinstance().numDisp->AppendText(A->GetLabelText());
-
-
-	if (Iszero) {
-
-		Caculator_Processator::Getinstance().numDisp->Clear();
-		Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
-		Caculator_Processator::Getinstance().numDisp->AppendText(A->GetLabelText());
+	else if (Caculator_Processator::Getinstance().OperatorOnScreen == '*') {
+		Caculator_Processator::MultCommands(Caculator_Processator::Getinstance().SecondNumb);
+		Caculator_Processator::MultCommands com;
+	
+		com.Execute();
+		Caculator_Processator::Getinstance().numDisp->AppendText(std::to_string((int)Caculator_Processator::Getinstance().result));
+		Caculator_Processator::Getinstance().FirstNumb = Caculator_Processator::Getinstance().result;
 	}
-
-	Iszero = false;
-	event.Skip();
-}
-void MainWindows::Clickon_B(wxCommandEvent& event) {
-	Caculator_Processator::Getinstance().numDisp->AppendText(B->GetLabelText());
-
-
-	if (Iszero) {
-
-		Caculator_Processator::Getinstance().numDisp->Clear();
-		Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
-		Caculator_Processator::Getinstance().numDisp->AppendText(B->GetLabelText());
+	else if (Caculator_Processator::Getinstance().OperatorOnScreen == '-') {
+		Caculator_Processator::SubtractCommands(Caculator_Processator::Getinstance().SecondNumb);
+		Caculator_Processator::SubtractCommands com;
+		com.Execute();
+		Caculator_Processator::Getinstance().numDisp->AppendText(std::to_string((int)Caculator_Processator::Getinstance().result));
+		Caculator_Processator::Getinstance().FirstNumb = Caculator_Processator::Getinstance().result;
 	}
+	else if (Caculator_Processator::Getinstance().OperatorOnScreen == '/') {
+		Caculator_Processator::DivCommands(Caculator_Processator::Getinstance().SecondNumb);
+		Caculator_Processator::DivCommands com;
+		com.Execute();
+		
+		Caculator_Processator::Getinstance().numDisp->AppendText(std::to_string(Caculator_Processator::Getinstance().result));
+		Caculator_Processator::Getinstance().numDisp->AppendText(',');
+		Caculator_Processator::Getinstance().FirstNumb = Caculator_Processator::Getinstance().result;
+		
 
-	Iszero = false;
-	event.Skip();
-}
-void MainWindows::Clickon_C(wxCommandEvent& event) {
-	Caculator_Processator::Getinstance().numDisp->AppendText(C->GetLabelText());
-
-
-	if (Iszero) {
-
-		Caculator_Processator::Getinstance().numDisp->Clear();
-		Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
-		Caculator_Processator::Getinstance().numDisp->AppendText(C->GetLabelText());
 	}
+	else if (Caculator_Processator::Getinstance().OperatorOnScreen == "Mod") {
+		Caculator_Processator::DivCommands((int)Caculator_Processator::Getinstance().SecondNumb);
+		Caculator_Processator::DivCommands com;
+		com.Mod();
 
-	Iszero = false;
-	event.Skip();
+		Caculator_Processator::Getinstance().numDisp->AppendText(std::to_string(Caculator_Processator::Getinstance().result));
+		
+		Caculator_Processator::Getinstance().FirstNumb = Caculator_Processator::Getinstance().result;
+		Iszero = true;
+		event.Skip();
+	}
 }
-void MainWindows::Clickon_D(wxCommandEvent& event) {
-	Caculator_Processator::Getinstance().numDisp->AppendText(D->GetLabelText());
+	void MainWindows::Clickon_Point(wxCommandEvent & event) {
+		Caculator_Processator::Getinstance().numDisp->AppendText(Point->GetLabelText());
 
 
-	if (Iszero) {
 
-		Caculator_Processator::Getinstance().numDisp->Clear();
-		Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
-		Caculator_Processator::Getinstance().numDisp->AppendText(D->GetLabelText());
+		Iszero = false;
+		event.Skip();
+	}
+	void MainWindows::Clickon_Negate(wxCommandEvent & event) {
+		
+
+		if (!Iszero && !is_negative) {
+			Caculator_Processator::Getinstance().FirstNumb = std::stof((std::string(Caculator_Processator::Getinstance().numDisp->GetValue())));
+			Caculator_Processator::Getinstance().numDisp->Clear();
+			Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n ");
+
+			Caculator_Processator::Getinstance().FirstNumb = -(Caculator_Processator::Getinstance().FirstNumb);
+			Caculator_Processator::Getinstance().numDisp->AppendText(std::to_string((int)Caculator_Processator::Getinstance().FirstNumb));
+			is_negative = true;
+		}
+		event.Skip();
 	}
 
-	Iszero = false;
-	event.Skip();
-}
-void MainWindows::Clickon_E(wxCommandEvent& event) {
-	Caculator_Processator::Getinstance().numDisp->AppendText(E->GetLabelText());
 
-
-	if (Iszero) {
-
-		Caculator_Processator::Getinstance().numDisp->Clear();
-		Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
-		Caculator_Processator::Getinstance().numDisp->AppendText(E->GetLabelText());
-	}
-
-	Iszero = false;
-	event.Skip();
-}
-void MainWindows::Clickon_F(wxCommandEvent& event) {
-	Caculator_Processator::Getinstance().numDisp->AppendText(F->GetLabelText());
-
-
-	if (Iszero) {
-
-		Caculator_Processator::Getinstance().numDisp->Clear();
-		Caculator_Processator::Getinstance().numDisp->AppendText("\n\n\n");
-		Caculator_Processator::Getinstance().numDisp->AppendText(F->GetLabelText());
-	}
-
-	Iszero = false;
-	event.Skip();
-}
 
 //Mode
 
@@ -389,8 +395,7 @@ void MainWindows::Clickon_bin(wxCommandEvent& event) {
 
 }
 void MainWindows::Clickon_hex(wxCommandEvent& event) {
-	//not ready yet working on logic 
-
+	
 
 }
 void MainWindows::Clickon_dec(wxCommandEvent& event) {

@@ -2,6 +2,7 @@
 #include "wx/wx.h"
 #include "MainWindows.h"
 #include "Caculator_Processator.h"
+#include <string>
 
 class ButtonFactory
 {

@@ -42,12 +42,7 @@ public :
 	wxButton* Dec = nullptr;
 	wxButton* Bin = nullptr;
 	wxButton* Hex = nullptr;
-	wxButton* A = nullptr;
-	wxButton* B = nullptr;
-	wxButton* C = nullptr;
-	wxButton* D = nullptr;
-	wxButton* E = nullptr;
-	wxButton* F = nullptr;
+	
 
 	wxButton* Point = nullptr;
 	wxButton* clear = nullptr;
@@ -67,13 +62,7 @@ void Clickon_Six(wxCommandEvent& event);
 void Clickon_Seven(wxCommandEvent& event);
 void Clickon_Eight(wxCommandEvent& event);
 void Clickon_Nine(wxCommandEvent& event);
-//hex
-void Clickon_A(wxCommandEvent& event);
-void Clickon_B(wxCommandEvent& event);
-void Clickon_C(wxCommandEvent& event);
-void Clickon_D(wxCommandEvent& event);
-void Clickon_E(wxCommandEvent& event);
-void Clickon_F(wxCommandEvent& event);
+
 //operations
 void Clickon_subtract(wxCommandEvent& event);
 void Clickon_Add(wxCommandEvent& event);
@@ -90,10 +79,12 @@ void Clickon_bin(wxCommandEvent& event);
 void Clickon_hex(wxCommandEvent& event);
 void Clickon_dec(wxCommandEvent& event);
 //bool for checking if is 0
-
+std::string  ConvertToHex(double dec);
+double ConverttoDec(std::string hex);
+int ConvertToBi(double dec);
 
 private :
-
+	wxWindow* parent = nullptr;
 	bool Iszero = true;
 	
 };
